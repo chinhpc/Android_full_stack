@@ -8,7 +8,7 @@ PRODUCT_PACKAGES := \
 
 # Manually copy the optional library XML files in the system image.
 PRODUCT_COPY_FILES := \
-    vendor/chinhpc/gpio/frameworks/com.android.gpio_library.xml:system/etc/permissions/com.android.gpio_library.xml
+    vendor/chinhpc/gpio/frameworks/gpio/com.android.gpio_library.xml:system/etc/permissions/com.android.gpio_library.xml
 
 # name of the add-on
 #PRODUCT_SDK_ADDON_NAME := gpio_library
@@ -40,3 +40,9 @@ PRODUCT_COPY_FILES := \
 # Real name of the add-on. This is the name used to build the add-on.
 # Use 'make PRODUCT-<PRODUCT_NAME>-sdk_addon' to build the add-on.
 #PRODUCT_NAME := gpio_addon
+
+# ifneq ($(TARGET_BUILD_VARIANT),user)
+# SELINUX_IGNORE_NEVERALLOWS := true
+# endif
+
+BOARD_SEPOLICY_DIRS := device/generic/car/sepolicy

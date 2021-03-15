@@ -12,7 +12,52 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+ifneq ($(TARGET_BUILD_JAVA_SUPPORT_LEVEL),)
+
+# This makefile shows how to build your own shared library that can be
+# shipped on the system of a phone, and included additional examples of
+# including JNI code with the library and writing client applications against it.
+
 LOCAL_PATH := $(call my-dir)
+
+# the library
+# ============================================================
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := \
+            $(call all-subdir-java-files)
+
+LOCAL_MODULE_TAGS := optional
+
+# LOCAL_PROPRIETARY_MODULE := true
+
+# This is the target being built.
+LOCAL_MODULE := com.android.gpio_library
+# LOCAL_SDK_VERSION := current
+
+include $(BUILD_JAVA_LIBRARY)
+
+# the documentation
+# ============================================================
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := $(call all-subdir-java-files) $(call all-subdir-html-files)
+
+LOCAL_MODULE := gpio_library
+LOCAL_DROIDDOC_OPTIONS :=
+LOCAL_MODULE_CLASS := JAVA_LIBRARIES
+LOCAL_DROIDDOC_USE_STANDARD_DOCLET := true
+# LOCAL_PROPRIETARY_MODULE := true
+
+include $(BUILD_DROIDDOC)
+
+# The JNI component
+# ============================================================
+# Also build all of the sub-targets under this one: the library's
+# associated JNI code, and a sample client of the library.
+include $(CLEAR_VARS)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
+endif # JAVA_SUPPORT

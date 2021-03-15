@@ -15,6 +15,8 @@ LOCAL_SHARED_LIBRARIES :=     		\
 LOCAL_C_INCLUDES += \
 	libcore/include
 
+LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog
+
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_MODULE:= libgpioservice

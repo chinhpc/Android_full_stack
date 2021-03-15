@@ -1,0 +1,1 @@
+#insmod /system/vendor/modules/gpio-sunxi.ko

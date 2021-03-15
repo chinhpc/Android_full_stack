@@ -17,10 +17,13 @@ LOCAL_STATIC_LIBRARIES :=
 
 LOCAL_C_INCLUDES += \
     frameworks/base/core/jni \
+    libnativehelper/include/nativehelper \
     $(LOCAL_PATH)/../libgpio \
     $(JNI_H_INCLUDE)
 
 LOCAL_CFLAGS +=
+
+LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog
 
 LOCAL_MODULE_TAGS := optional
 
@@ -29,4 +32,3 @@ LOCAL_MODULE:= libgpio_jni
 LOCAL_PRELINK_MODULE:= false
 
 include $(BUILD_SHARED_LIBRARY)
-
